@@ -1,0 +1,8 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "maoling/player/neptunia/uni/normal/eyelid_00"
+	"$alphatest" 1
+	"$nocull" 1
+	"$nodecal" 1
+	"$translucent" 1
+}

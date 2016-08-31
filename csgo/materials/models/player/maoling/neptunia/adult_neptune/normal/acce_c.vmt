@@ -1,0 +1,13 @@
+VertexlitGeneric
+{
+$basetexture "models/player/maoling/neptunia/adult_neptune/normal/acce_c"
+//$phong 1
+//$bumpmap ""
+
+
+$phongexponent 60
+$phongtint "[1 1 1]"
+$phongboost .2
+$phongfresnelranges "[0.4 0.8 1]"
+$basemapalphaphongmask 1
+}

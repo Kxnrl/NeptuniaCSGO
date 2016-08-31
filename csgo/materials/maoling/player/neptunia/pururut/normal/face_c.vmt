@@ -1,0 +1,15 @@
+"VertexlitGeneric"
+{
+
+$baseTexture "maoling/player/neptunia/pururut/normal/face_c"
+$bumpmap "maoling/player/neptunia/pururut/normal/face_c_normal"
+
+$halflambert 1
+$phong 1
+$phongboost ".5"
+$phongexponent 30
+$phongtint "[.85 .85 1]"
+$phongfresnelranges "[.5 .85 30]"
+
+
+}

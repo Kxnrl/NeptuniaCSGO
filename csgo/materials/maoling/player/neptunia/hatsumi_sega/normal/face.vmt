@@ -1,0 +1,20 @@
+vertexlitgeneric
+{
+
+$baseTexture "maoling/player/neptunia/hatsumi_sega/normal/face"
+
+
+
+"$nodecal" "1"
+
+
+"Proxies"
+{
+"AnimatedTexture"
+{
+"animatedTextureVar" "$basetexture"
+"animatedTextureFrameNumVar" "$frame"
+"animatedTextureFrameRate" "8"
+}
+}
+}

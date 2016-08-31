@@ -1,0 +1,16 @@
+"VertexlitGeneric"
+{
+
+$baseTexture "maoling/player/neptunia/histoire/normal/body_c"
+$bumpmap "maoling/player/neptunia/histoire/normal/body_c_normal"
+$halflambert 1
+$phong 1
+$phongboost "1.5"
+$phongexponent 5
+$phongtint "[.85 .85 1]"
+$phongfresnelranges "[.5 .85 30]"
+$ambientocclusion 1
+$nocull 1
+
+
+}

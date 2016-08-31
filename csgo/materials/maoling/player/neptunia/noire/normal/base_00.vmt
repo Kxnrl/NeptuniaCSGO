@@ -1,0 +1,5 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "maoling/player/neptunia/noire/normal/base_00"
+	"$nocull" 1
+}

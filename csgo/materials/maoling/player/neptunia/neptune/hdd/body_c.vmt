@@ -1,0 +1,5 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "maoling/player/neptunia/neptune/hdd/body_c"
+	"$nocull" 1
+}

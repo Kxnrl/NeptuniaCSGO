@@ -1,0 +1,5 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "maoling/player/neptunia/neptune/swimwear/hair_c"
+	"$nocull" 1
+}

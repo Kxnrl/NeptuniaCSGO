@@ -1,0 +1,20 @@
+vertexlitgeneric
+{
+
+$baseTexture "maoling/player/neptunia/adult_neptune/swimsuit_v2/eyes"
+
+
+
+"$nodecal" "1"
+
+
+"Proxies"
+{
+"AnimatedTexture"
+{
+"animatedTextureVar" "$basetexture"
+"animatedTextureFrameNumVar" "$frame"
+"animatedTextureFrameRate" "8"
+}
+}
+}

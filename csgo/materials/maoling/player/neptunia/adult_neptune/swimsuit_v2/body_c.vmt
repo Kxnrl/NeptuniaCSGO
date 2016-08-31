@@ -1,0 +1,13 @@
+VertexlitGeneric
+{
+$basetexture "maoling/player/neptunia/adult_neptune/swimsuit_v2/body_c"
+//$phong 1
+//$bumpmap ""
+
+
+$phongexponent 60
+$phongtint "[1 1 1]"
+$phongboost .2
+$phongfresnelranges "[0.4 0.8 1]"
+$basemapalphaphongmask 1
+}
