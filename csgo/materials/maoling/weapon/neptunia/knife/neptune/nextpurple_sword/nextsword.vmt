@@ -1,0 +1,6 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "maoling/weapon/neptunia/knife/neptune/nextpurple_sword/nextsword"
+	$surfaceprop default
+	$selfillum 1
+}

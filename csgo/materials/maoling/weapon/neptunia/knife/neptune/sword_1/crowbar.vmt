@@ -1,0 +1,8 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "maoling/weapon/neptunia/knife/neptune/sword_1/crowbar"
+	$surfaceprop default
+	$selfillum 1
+	$selfillummask "maoling/weapon/neptunia/knife/neptune/sword_1/crowbar_mask"
+   	 $selfillumtint "1 1 1"
+}

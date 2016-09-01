@@ -1,0 +1,14 @@
+VertexlitGeneric
+{
+$basetexture "maoling/weapon/neptunia/knife/neptune/sword_2/w005b_102tex_c"
+//$phong 1
+//$bumpmap ""
+
+$selfillum 1
+
+$phongexponent 60
+$phongtint "[1 1 1]"
+$phongboost .2
+$phongfresnelranges "[0.4 0.8 1]"
+$basemapalphaphongmask 1
+}

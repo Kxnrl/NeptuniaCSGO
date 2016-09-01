@@ -1,0 +1,28 @@
+"Neptunia"
+{
+	"Purple Heart Sword (Version 1)"
+	{
+		"vmodel"	"models/maoling/weapon/neptunia/knife/neptune/sword_1_v.mdl"
+		"wmodel"	"models/maoling/weapon/neptunia/knife/neptune/sword_1_w.mdl"
+	}
+	"Purple Heart Sword (Version 2)"
+	{
+		"vmodel"	"models/maoling/weapon/neptunia/knife/neptune/sword_2_v.mdl"
+		"wmodel"	"models/maoling/weapon/neptunia/knife/neptune/sword_2_w.mdl"
+	}
+	"Purple Heart Sword (Version 3)"
+	{
+		"vmodel"	"models/maoling/weapon/neptunia/knife/neptune/sword_3_v.mdl"
+		"wmodel"	"models/maoling/weapon/neptunia/knife/neptune/sword_3_w.mdl"
+	}
+	"Purple Heart Sword (Version 4)"
+	{
+		"vmodel"	"models/maoling/weapon/neptunia/knife/neptune/sword_4_v.mdl"
+		"wmodel"	"models/maoling/weapon/neptunia/knife/neptune/sword_4_w.mdl"
+	}
+	"Next Purple Sword"
+	{
+		"vmodel"	"models/maoling/weapon/neptunia/knife/neptune/nextpurple_sword_v.mdl"
+		"wmodel"	"models/maoling/weapon/neptunia/knife/neptune/nextpurple_sword_w.mdl"
+	}
+}

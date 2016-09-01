@@ -89,14 +89,39 @@ public void PreparingAllModels()
 	for(int i = 0; i < g_iModels; ++i)
 	{
 		g_eModel[i][iModel] = PrecacheModel(g_eModel[i][szModel], true);
-		AddFileToDownloadsTable(g_eModel[i][szModel]);
+		AddFileToDownloadsTable2(g_eModel[i][szModel], false);
 		
 		if(g_eModel[i][szArms][0] != 0 && FileExists(g_eModel[i][szArms]))
 		{
 			PrecacheModel(g_eModel[i][szArms], true);
-			AddFileToDownloadsTable(g_eModel[i][szArms]);
+			AddFileToDownloadsTable2(g_eModel[i][szArms], true);
 		}
 	}
+}
+
+stock void AddFileToDownloadsTable2(const char[] szMDL, bool arms)
+{
+	char m_szPath[128], m_szVTX[128], m_szVVD[128], m_szPHY[128];
+	
+	strcopy(m_szPath, 128, szMDL);
+	ReplaceString(m_szPath, 128, ".mdl", "");
+	
+	strcopy(m_szVTX, 128, m_szPath);
+	StrCat(m_szVTX, 128, ".dx90.vtx");
+	AddFileToDownloadsTable(m_szVTX);
+	
+	strcopy(m_szVVD, 128, m_szPath);
+	StrCat(m_szVVD, 128, ".vvd");
+	AddFileToDownloadsTable(m_szVVD);
+	
+	if(!arms)
+	{
+		strcopy(m_szPHY, 128, m_szPath);
+		StrCat(m_szPHY, 128, ".phy");
+		AddFileToDownloadsTable(m_szPHY);
+	}
+
+	AddFileToDownloadsTable(szMDL);
 }
 
 public void AddTextrureToDownoadTable()

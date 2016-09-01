@@ -1,0 +1,5 @@
+VertexlitGeneric
+{
+$basetexture "maoling/weapon/neptunia/knife/neptune/sword_4/sword4"
+$selfillum 1
+}
