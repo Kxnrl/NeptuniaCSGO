@@ -1,3 +1,12 @@
+/**
+ ** Model by ComplieHeart
+ ** CSGO by Valve
+ ** Ripped by maoling( xQy ) and jh10001
+ ** CSGO Model Source by maoling( xQy )
+ ** CSGO Plugin by maoling( xQy ) 
+ ** Steam: http://steamcommunity.com/id/_xQy_/
+*/
+
 #include <sourcemod>
 #include <sdktools>
 
