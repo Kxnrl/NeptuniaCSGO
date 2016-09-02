@@ -78,4 +78,10 @@
 		"arms"		"models/player/custom_player/maoling/neptunia/uni/normal/uni_arms.mdl"
 		"team"		"3"
 	}
+	"Next Black"
+	{
+		"model"		"models/player/custom_player/maoling/neptunia/noire/nextform/nextblack.mdl"
+		"arms"		"models/player/custom_player/maoling/neptunia/noire/nextform/nextblack_arms.mdl"
+		"team"		"3"
+	}
 }

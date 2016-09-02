@@ -1,0 +1,5 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "maoling/player/neptunia/noire/nextform/parts_c"
+	$selfillum 1
+}
