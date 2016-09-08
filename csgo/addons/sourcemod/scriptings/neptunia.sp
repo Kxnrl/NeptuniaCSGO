@@ -24,13 +24,14 @@ enum Models
 int g_iModels;
 Models g_eModel[24][Models];
 int g_iClientModel[MAXPLAYERS+1][4];
+int g_iAdminTarget[MAXPLAYERS+1];
 
 public Plugin myinfo = 
 {
 	name = "Neptunia Model for CSGO",
 	author = "maoling ( xQy )",
 	description = "",
-	version = "1.2",
+	version = "1.3",
 	url = "http://steamcommunity.com/id/_xQy_/"
 };
 
@@ -43,6 +44,8 @@ public void OnPluginStart()
 	
 	RegConsoleCmd("sm_nep", Command_Menu);
 	RegConsoleCmd("sm_neptunia", Command_Menu);
+	
+	RegAdminCmd("sm_nadmin", Command_Admin, ADMFLAG_BAN);
 }
 
 public APLRes AskPluginLoad2(Handle myself, bool late, char[] error, int err_max)
@@ -345,11 +348,10 @@ void BuildSelectMenuToClient(int client, int team)
 {
 	Handle menu = CreateMenu(MenuHandler_SelectMenu);
 	
-	char m_szItem[128];
+	char m_szItem[128], m_szId[4];
 	Format(m_szItem, 128, "[Planeptune] - Select Your Model\n ");
 	SetMenuTitle(menu, m_szItem, client);
-	
-	char m_szId[4];
+
 	for(int mdl; mdl < g_iModels; ++mdl)
 	{
 		if(g_eModel[mdl][iTeam] == team)
@@ -383,11 +385,11 @@ public int MenuHandler_SelectMenu(Handle menu, MenuAction action, int client, in
 			char info[32];
 			GetMenuItem(menu, itemNum, info, 32);
 			
-			int m_id = StringToInt(info);
+			int m_Id = StringToInt(info);
 
-			g_iClientModel[client][g_eModel[m_id][iTeam]] = m_id;
+			g_iClientModel[client][g_eModel[m_Id][iTeam]] = m_Id;
 			
-			PrintToChat(client, "[\x0EPlaneptune\x01]  You have selected \x0C%s \x01as your model", g_eModel[m_id][szName]);
+			PrintToChat(client, "[\x0EPlaneptune\x01]  You have selected \x0C%s \x01as your model", g_eModel[m_Id][szName]);
 		}
 		case MenuAction_End:
 		{
@@ -398,6 +400,147 @@ public int MenuHandler_SelectMenu(Handle menu, MenuAction action, int client, in
             if(itemNum == MenuCancel_ExitBack)
             {
                 BuildMenuToClient(client);
+            }
+        }
+	}
+}
+
+public Action Command_Admin(int client, int args)
+{
+	Handle menu = CreateMenu(MenuHandler_AdminMenu);
+	
+	g_iAdminTarget[client] = 0;
+	
+	char m_szItem[128];
+	Format(m_szItem, 128, "[Planeptune] - Select Client\n ");
+	SetMenuTitle(menu, m_szItem, client);
+	
+	for(int target = 1; target <= MaxClients; ++target)
+	{
+		if(!IsClientInGame(target))
+			continue;
+		
+		int m_iTeam = GetClientTeam(target);
+		
+		if(m_iTeam <= 1)
+			continue;
+		
+		char m_szId[4];
+
+		if(m_iTeam == 2)
+			Format(m_szItem, 128, "[TE] %N", target);
+		else if(m_iTeam == 3)
+			Format(m_szItem, 128, "[CT] %N", target);
+		
+		IntToString(GetClientUserId(target), m_szId, 4);
+		
+		AddMenuItem(menu, m_szId, m_szItem, ITEMDRAW_DEFAULT);
+	}
+	
+	SetMenuExitButton(menu, true);
+	DisplayMenu(menu, client, 0);
+}
+
+public int MenuHandler_AdminMenu(Handle menu, MenuAction action, int client, int itemNum) 
+{
+	switch(action)
+	{
+		case MenuAction_Select:
+		{
+			char info[32];
+			GetMenuItem(menu, itemNum, info, 32);
+			
+			g_iAdminTarget[client] = StringToInt(info);
+			
+			int target = GetClientOfUserId(g_iAdminTarget[client]);
+
+			if(!target || !IsClientInGame(target))
+			{
+				PrintToChat(client, "[\x0EPlaneptune\x01]  \x04Target is not in Game.");
+				g_iAdminTarget[client] = 0;
+				return;
+			}
+			
+			BuildAdminMenu(client);
+		}
+		case MenuAction_End:
+		{
+			CloseHandle(menu);
+		}
+	}
+}
+
+void BuildAdminMenu(int client)
+{
+	Handle menu = CreateMenu(MenuHandler_AdminSelectMenu);
+	
+	char m_szItem[128], m_szId[4];
+	Format(m_szItem, 128, "[Planeptune] - Select %N Model\n ", g_iAdminTarget[client]);
+	SetMenuTitle(menu, m_szItem, client);
+
+	int target = GetClientOfUserId(g_iAdminTarget[client]);
+	int m_iTeam = GetClientTeam(target);
+	for(int mdl; mdl < g_iModels; ++mdl)
+	{
+		if(g_eModel[mdl][iTeam] == m_iTeam)
+		{
+			IntToString(mdl, m_szId, 4);
+			
+			if(g_iClientModel[target][m_iTeam] == mdl)
+			{
+				char szCurrent[256];
+				Format(szCurrent, 256, "%s (Current target Selected)", g_eModel[mdl][szName]);
+				AddMenuItem(menu, m_szId, szCurrent, ITEMDRAW_DISABLED);
+			}
+			else
+			{
+				AddMenuItem(menu, m_szId, g_eModel[mdl][szName], ITEMDRAW_DEFAULT);
+			}
+		}
+	}
+	
+	SetMenuExitBackButton(menu, true);
+	SetMenuExitButton(menu, true);
+	DisplayMenu(menu, client, 0);
+}
+
+public int MenuHandler_AdminSelectMenu(Handle menu, MenuAction action, int client, int itemNum) 
+{
+	switch(action)
+	{
+		case MenuAction_Select:
+		{
+			char info[32];
+			GetMenuItem(menu, itemNum, info, 32);
+			
+			int m_Id = StringToInt(info);
+			
+			int target = GetClientOfUserId(g_iAdminTarget[client]);
+			
+			if(!target || !IsClientInGame(target))
+			{
+				PrintToChat(client, "[\x0EPlaneptune\x01]  \x04Target is not in Game.");
+				g_iAdminTarget[client] = 0;
+				return;
+			}
+
+			g_iClientModel[target][g_eModel[m_Id][iTeam]] = m_Id;
+			
+			PreSetClientModel(target, GetClientTeam(target), true);
+			
+			PrintToChat(client, "[\x0EPlaneptune\x01]  Set %N model successful!", target);
+			
+			g_iAdminTarget[client] = 0;
+		}
+		case MenuAction_End:
+		{
+			CloseHandle(menu);
+		}
+		case MenuAction_Cancel:
+        {
+            if(itemNum == MenuCancel_ExitBack)
+            {
+                Command_Admin(client, 0);
             }
         }
 	}

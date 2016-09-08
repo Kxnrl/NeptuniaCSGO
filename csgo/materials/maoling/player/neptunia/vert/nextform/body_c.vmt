@@ -1,0 +1,5 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "maoling/player/neptunia/vert/nextform/body_c"
+	"$nocull" 1
+}

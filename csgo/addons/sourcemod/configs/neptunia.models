@@ -84,4 +84,10 @@
 		"arms"		"models/player/custom_player/maoling/neptunia/noire/nextform/nextblack_arms.mdl"
 		"team"		"3"
 	}
+	"Next Green"
+	{
+		"model"		"models/player/custom_player/maoling/neptunia/vert/nextform/nextgreen.mdl"
+		"arms"		"models/player/custom_player/maoling/neptunia/vert/nextform/nextgreen_arms.mdl"
+		"team"		"2"
+	}
 }
