@@ -24,6 +24,7 @@ enum Models
 int g_eModel[12][Models];
 int g_iModels;
 int g_iClientModel[MAXPLAYERS+1];
+int g_iAdminTarget[MAXPLAYERS+1];
 
 public Plugin myinfo = 
 {
@@ -36,14 +37,16 @@ public Plugin myinfo =
 
 public void OnPluginStart()
 {
-	//I am not sure use custom weapon will get VAC ban? but sword is safe.
+	LoadModelsData();
+	
+	HookEvent("player_spawn", Event_PlayerSpawn, EventHookMode_Post);
+
+	//I am not sure use custom weapon will get TOKEN(GSLT) ban? but sword is safe.
 	RegConsoleCmd("sm_sword", Command_Sword);
 	RegConsoleCmd("sm_knife", Command_Sword);
 	RegConsoleCmd("sm_nsword", Command_Sword);
 	
-	LoadModelsData();
-	
-	HookEvent("player_spawn", Event_PlayerSpawn, EventHookMode_Post);
+	RegAdminCmd("nsadmin", Command_Admin, ADMFLAG_BAN);
 }
 
 public APLRes AskPluginLoad2(Handle myself, bool late, char[] error, int err_max)
@@ -258,5 +261,138 @@ public int MenuHandler_MainMenu(Handle menu, MenuAction action, int client, int 
 		{
 			CloseHandle(menu);
 		}
+	}
+}
+
+public Action Command_Admin(int client, int args)
+{
+	Handle menu = CreateMenu(MenuHandler_AdminMenu);
+	
+	g_iAdminTarget[client] = 0;
+	
+	char m_szItem[128];
+	Format(m_szItem, 128, "[Planeptune] - Select Client\n ");
+	SetMenuTitle(menu, m_szItem, client);
+	
+	for(int target = 1; target <= MaxClients; ++target)
+	{
+		if(!IsClientInGame(target))
+			continue;
+		
+		int m_iTeam = GetClientTeam(target);
+		
+		if(m_iTeam <= 1)
+			continue;
+		
+		char m_szId[4];
+
+		GetClientName(target, m_szItem, 128);
+		
+		IntToString(GetClientUserId(target), m_szId, 4);
+
+		AddMenuItem(menu, m_szId, m_szItem, ITEMDRAW_DEFAULT);
+	}
+
+	SetMenuExitButton(menu, true);
+	DisplayMenu(menu, client, 0);
+}
+
+public int MenuHandler_AdminMenu(Handle menu, MenuAction action, int client, int itemNum) 
+{
+	switch(action)
+	{
+		case MenuAction_Select:
+		{
+			char info[32];
+			GetMenuItem(menu, itemNum, info, 32);
+			
+			g_iAdminTarget[client] = StringToInt(info);
+			
+			int target = GetClientOfUserId(g_iAdminTarget[client]);
+
+			if(!target || !IsClientInGame(target))
+			{
+				PrintToChat(client, "[\x0EPlaneptune\x01]  \x04Target is not in Game.");
+				g_iAdminTarget[client] = 0;
+				return;
+			}
+			
+			BuildAdminMenu(client);
+		}
+		case MenuAction_End:
+		{
+			CloseHandle(menu);
+		}
+	}
+}
+
+void BuildAdminMenu(int client)
+{
+	Handle menu = CreateMenu(MenuHandler_AdminSelectMenu);
+	
+	char m_szItem[128], m_szId[4];
+	Format(m_szItem, 128, "[Planeptune] - Select %N Model\n ", g_iAdminTarget[client]);
+	SetMenuTitle(menu, m_szItem, client);
+
+	int target = GetClientOfUserId(g_iAdminTarget[client]);
+	for(int id; id < g_iModels; ++id)
+	{
+		IntToString(id, m_szId, 4);
+		
+		if(g_iClientModel[target] == id)
+		{
+			char szCurrent[256];
+			Format(szCurrent, 256, "%s (Current Selected)", g_eModel[id][szName]);
+			AddMenuItem(menu, m_szId, szCurrent, ITEMDRAW_DISABLED);
+		}
+		else
+		{
+			AddMenuItem(menu, m_szId, g_eModel[id][szName], ITEMDRAW_DEFAULT);
+		}
+	}
+
+	SetMenuExitButton(menu, true);
+	DisplayMenu(menu, client, 0);
+}
+
+public int MenuHandler_AdminSelectMenu(Handle menu, MenuAction action, int client, int itemNum) 
+{
+	switch(action)
+	{
+		case MenuAction_Select:
+		{
+			char info[32];
+			GetMenuItem(menu, itemNum, info, 32);
+			
+			int m_Id = StringToInt(info);
+			
+			int target = GetClientOfUserId(g_iAdminTarget[client]);
+			
+			if(!target || !IsClientInGame(target))
+			{
+				PrintToChat(client, "[\x0EPlaneptune\x01]  \x04Target is not in Game.");
+				g_iAdminTarget[client] = 0;
+				return;
+			}
+
+			g_iClientModel[client] = m_Id;
+			
+			FPVMI_SetClientModel(client, "weapon_knife", g_eModel[m_Id][iCacheV], g_eModel[m_Id][iCacheW], g_eModel[m_Id][szModelD]);
+
+			PrintToChat(client, "[\x0EPlaneptune\x01]  Set %N model as [\x04%s\x01] successful!", target, g_eModel[m_Id][szName]);
+			
+			g_iAdminTarget[client] = 0;
+		}
+		case MenuAction_End:
+		{
+			CloseHandle(menu);
+		}
+		case MenuAction_Cancel:
+        {
+            if(itemNum == MenuCancel_ExitBack)
+            {
+                Command_Admin(client, 0);
+            }
+        }
 	}
 }

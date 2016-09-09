@@ -35,6 +35,7 @@ PurpleHeart
 NextPurple
 NextPurple.non-Thruster
 NextBlack
+NextGreen
 Noire
 Pururut
 Uni
@@ -69,3 +70,8 @@ Purple Heart Sword (version 4)
 1. Add Next Black
 2. Fixed Server Crash
 ```
+
+1.3
+```bash
+1. Add Next Green
+2. Add Admin Menu

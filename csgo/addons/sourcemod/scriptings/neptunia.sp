@@ -45,7 +45,7 @@ public void OnPluginStart()
 	RegConsoleCmd("sm_nep", Command_Menu);
 	RegConsoleCmd("sm_neptunia", Command_Menu);
 	
-	RegAdminCmd("sm_nadmin", Command_Admin, ADMFLAG_BAN);
+	RegAdminCmd("nmdmin", Command_Admin, ADMFLAG_BAN);
 }
 
 public APLRes AskPluginLoad2(Handle myself, bool late, char[] error, int err_max)
