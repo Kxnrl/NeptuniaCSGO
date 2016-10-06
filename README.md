@@ -19,6 +19,7 @@ You need to follow a few simple instructions to install pack:
 2. Extract the Pack on your local hard drive and move the contents to your game folder and server folder, making sure you merge with the addons and models and materials folder.
 3. Load any maps and make sure the plugin is function correctly.
 4. If you want to use neptunia sword, you need install FPVMI (https://github.com/Franc1sco/First-Person-View-Models-Interface)
+5. If you want to run without sourcemod, you can use .kv file, take /maps/de_dust2.kv as example. (mapname.kv)
 
 
 ## Model List
@@ -29,16 +30,23 @@ Neptune.Swimwear
 Adult Neptune
 Adult Neptune.Swimsult
 Blanc
+Noire
+Uni
+Pururut
 Hatsumi Sega
 Histoire
+S-Sha
 PurpleHeart
+GreenHeart
 NextPurple
 NextPurple.non-Thruster
 NextBlack
+NextBlack.non-Thruster
+NextWhite
+NextWhite.non-Thruster
 NextGreen
-Noire
-Pururut
-Uni
+NextGreen.non-Thruster
+
 ```
 hmm... dont ask me why i am not making Nepgear
 
@@ -75,3 +83,15 @@ Purple Heart Sword (version 4)
 ```bash
 1. Add Next Green
 2. Add Admin Menu
+
+
+1.4
+```bash
+1. Add Next White
+2. Add Green Heart
+3. Add S-Sha
+4. Add Next Green.non-Thruster
+5. Add Next Black.non-Thruster
+6. Add Next White.non-Thruster
+7. bug fixed :: Reset Player Arms
+8. Add .kv

@@ -30,36 +30,6 @@
 		"arms"		"models/player/custom_player/maoling/neptunia/blanc/normal/blanc_arms.mdl"
 		"team"		"2"
 	}
-	"Hatsumi Sega"
-	{
-		"model"		"models/player/custom_player/maoling/neptunia/hatsumi_sega/normal/sega_girl.mdl"
-		"arms"		"models/player/custom_player/maoling/neptunia/hatsumi_sega/normal/sega_girl_arms.mdl"
-		"team"		"3"
-	}
-	"Histoire"
-	{
-		"model"		"models/player/custom_player/maoling/neptunia/neptune/swimsuit/neptune.mdl"
-		"arms"		"models/player/custom_player/maoling/neptunia/neptune/swimsuit/neptune_arms.mdl"
-		"team"		"3"
-	}
-	"PurpleHeart"
-	{
-		"model"		"models/player/custom_player/maoling/neptunia/neptune/hdd/purpleheart.mdl"
-		"arms"		"models/player/custom_player/maoling/neptunia/neptune/hdd/purpleheart_arms.mdl"
-		"team"		"3"
-	}
-	"NextPurple"
-	{
-		"model"		"models/player/custom_player/maoling/neptunia/neptune/nextform/nextpurple.mdl"
-		"arms"		"models/player/custom_player/maoling/neptunia/neptune/nextform/nextpurple_arms.mdl"
-		"team"		"3"
-	}
-	"NextPurple.non-Thruster"
-	{
-		"model"		"models/player/custom_player/maoling/neptunia/neptune/nextform/nextpurple_nothruster.mdl"
-		"arms"		"models/player/custom_player/maoling/neptunia/neptune/nextform/nextpurple_nothruster_arms.mdl"
-		"team"		"3"
-	}
 	"Noire"
 	{
 		"model"		"models/player/custom_player/maoling/neptunia/noire/normal/noire.mdl"
@@ -78,11 +48,71 @@
 		"arms"		"models/player/custom_player/maoling/neptunia/uni/normal/uni_arms.mdl"
 		"team"		"3"
 	}
+	"Hatsumi Sega"
+	{
+		"model"		"models/player/custom_player/maoling/neptunia/hatsumi_sega/normal/sega_girl.mdl"
+		"arms"		"models/player/custom_player/maoling/neptunia/hatsumi_sega/normal/sega_girl_arms.mdl"
+		"team"		"3"
+	}
+	"Histoire"
+	{
+		"model"		"models/player/custom_player/maoling/neptunia/neptune/swimsuit/neptune.mdl"
+		"arms"		"models/player/custom_player/maoling/neptunia/neptune/swimsuit/neptune_arms.mdl"
+		"team"		"3"
+	}
+	"S-Sha"
+	{
+		"model"		"models/player/custom_player/maoling/neptunia/s-sha/normal/s-sha.mdl"
+		"arms"		"models/player/custom_player/maoling/neptunia/s-sha/normal/s-sha_arms.mdl"
+		"team"		"2"
+	}
+	"Purple Heart"
+	{
+		"model"		"models/player/custom_player/maoling/neptunia/neptune/hdd/purpleheart.mdl"
+		"arms"		"models/player/custom_player/maoling/neptunia/neptune/hdd/purpleheart_arms.mdl"
+		"team"		"3"
+	}
+	"Green Heart"
+	{
+		"model"		"models/player/custom_player/maoling/neptunia/vert/hdd/greenheart.mdl"
+		"arms"		"models/player/custom_player/maoling/neptunia/vert/hdd/greenheart_arms.mdl"
+		"team"		"2"
+	}
+	"Next Purple"
+	{
+		"model"		"models/player/custom_player/maoling/neptunia/neptune/nextform/nextpurple.mdl"
+		"arms"		"models/player/custom_player/maoling/neptunia/neptune/nextform/nextpurple_arms.mdl"
+		"team"		"3"
+	}
+	"Next Purple.non-Thruster"
+	{
+		"model"		"models/player/custom_player/maoling/neptunia/neptune/nextform/nextpurple_nothruster.mdl"
+		"arms"		"models/player/custom_player/maoling/neptunia/neptune/nextform/nextpurple_nothruster_arms.mdl"
+		"team"		"3"
+	}
 	"Next Black"
 	{
 		"model"		"models/player/custom_player/maoling/neptunia/noire/nextform/nextblack.mdl"
 		"arms"		"models/player/custom_player/maoling/neptunia/noire/nextform/nextblack_arms.mdl"
 		"team"		"3"
+	}
+	"Next Black.non-Thruster"
+	{
+		"model"		"models/player/custom_player/maoling/neptunia/noire/nextform/nextblack_nothruster.mdl"
+		"arms"		"models/player/custom_player/maoling/neptunia/noire/nextform/nextblack_nothruster_arms.mdl"
+		"team"		"3"
+	}
+	"Next White"
+	{
+		"model"		"models/player/custom_player/maoling/neptunia/blanc/nextform/nextwhite.mdl"
+		"arms"		"models/player/custom_player/maoling/neptunia/blanc/nextform/nextwhite_arms.mdl"
+		"team"		"2"
+	}
+	"Next White.non-Thruster"
+	{
+		"model"		"models/player/custom_player/maoling/neptunia/blanc/nextform/nextwhite_nothruster.mdl"
+		"arms"		"models/player/custom_player/maoling/neptunia/blanc/nextform/nextwhite_nothruster_arms.mdl"
+		"team"		"2"
 	}
 	"Next Green"
 	{
@@ -90,10 +120,10 @@
 		"arms"		"models/player/custom_player/maoling/neptunia/vert/nextform/nextgreen_arms.mdl"
 		"team"		"2"
 	}
-	"Next White"
+	"Next Green.non-Thruster"
 	{
-		"model"		"models/player/custom_player/maoling/neptunia/blanc/nextform/nextwhite.mdl"
-		"arms"		"models/player/custom_player/maoling/neptunia/blanc/nextform/nextwhite_arms.mdl"
+		"model"		"models/player/custom_player/maoling/neptunia/vert/nextform/nextgreen_nothruster.mdl"
+		"arms"		"models/player/custom_player/maoling/neptunia/vert/nextform/nextgreen_nothruster_arms.mdl"
 		"team"		"2"
 	}
 }
