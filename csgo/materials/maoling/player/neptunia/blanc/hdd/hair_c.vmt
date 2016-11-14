@@ -1,0 +1,6 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "maoling/player/neptunia/blanc/hdd/hair_c"
+	//"$nocull" 1
+	//$selfillum 1
+}

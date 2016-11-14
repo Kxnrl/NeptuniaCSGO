@@ -1,0 +1,5 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "maoling/player/neptunia/vert/normal/hair_c"
+	//"$nocull" 1
+}

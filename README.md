@@ -83,6 +83,7 @@ Purple Heart Sword (version 4)
 ```bash
 1. Add Next Green
 2. Add Admin Menu
+```
 
 
 1.4
@@ -95,3 +96,15 @@ Purple Heart Sword (version 4)
 6. Add Next White.non-Thruster
 7. bug fixed :: Reset Player Arms
 8. Add .kv
+```
+
+1.5
+```base
+1. Add Orange Heart
+2. Add Uzume
+3. Add Vert
+4. Add White Heart
+5. Add Neptune Awp
+6. bug fixed :: Reset Player Arms
+7. Add FPVMI
+```

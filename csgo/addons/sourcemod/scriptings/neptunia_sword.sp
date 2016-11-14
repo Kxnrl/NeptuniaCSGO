@@ -11,6 +11,8 @@
 #include <sdktools>
 #include <fpvm_interface>
 
+#pragma newdecls required
+
 enum Models
 {
 	String:szName[128],
@@ -31,7 +33,7 @@ public Plugin myinfo =
 	name = "Neptunia Sword for CSGO",
 	author = "maoling ( xQy )",
 	description = "",
-	version = "1.4",
+	version = "1.5",
 	url = "http://steamcommunity.com/id/_xQy_/"
 };
 

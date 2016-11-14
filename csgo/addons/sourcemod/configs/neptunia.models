@@ -48,6 +48,18 @@
 		"arms"		"models/player/custom_player/maoling/neptunia/uni/normal/uni_arms.mdl"
 		"team"		"3"
 	}
+	"Uzume"
+	{
+		"model"		"models/player/custom_player/maoling/neptunia/uzume/normal/uzume.mdl"
+		"arms"		"models/player/custom_player/maoling/neptunia/uzume/normal/uzume_arms.mdl"
+		"team"		"2"
+	}
+	"Vert"
+	{
+		"model"		"models/player/custom_player/maoling/neptunia/vert/normal/vert.mdl"
+		"arms"		"models/player/custom_player/maoling/neptunia/vert/normal/vert_arms.mdl"
+		"team"		"2"
+	}
 	"Hatsumi Sega"
 	{
 		"model"		"models/player/custom_player/maoling/neptunia/hatsumi_sega/normal/sega_girl.mdl"
@@ -76,6 +88,18 @@
 	{
 		"model"		"models/player/custom_player/maoling/neptunia/vert/hdd/greenheart.mdl"
 		"arms"		"models/player/custom_player/maoling/neptunia/vert/hdd/greenheart_arms.mdl"
+		"team"		"2"
+	}
+	"Orange Heart"
+	{
+		"model"		"models/player/custom_player/maoling/neptunia/uzume/hdd/orangeheart.mdl"
+		"arms"		"models/player/custom_player/maoling/neptunia/uzume/hdd/orangeheart_arms.mdl"
+		"team"		"2"
+	}
+	"White Heart"
+	{
+		"model"		"models/player/custom_player/maoling/neptunia/blanc/hdd/whiteheart.mdl"
+		"arms"		"models/player/custom_player/maoling/neptunia/blanc/hdd/whiteheart_arms.mdl"
 		"team"		"2"
 	}
 	"Next Purple"
