@@ -1,5 +1,10 @@
 # Neptunia For Counter-Strike: Global Offensive
 
+##Do not use THIS MOD for commercial/business purpose  
+
+For example:  X community personal model
+
+
 ## Info
 
 	Model by ComplieHeart
@@ -31,13 +36,17 @@ Adult Neptune
 Adult Neptune.Swimsult
 Blanc
 Noire
+Vert
 Uni
 Pururut
 Hatsumi Sega
 Histoire
 S-Sha
+Uzume
 PurpleHeart
 GreenHeart
+WhiteHeart
+OrangeHeart
 NextPurple
 NextPurple.non-Thruster
 NextBlack
@@ -58,6 +67,7 @@ Purple Heart Sword (version 1)
 Purple Heart Sword (version 2)
 Purple Heart Sword (version 3)
 Purple Heart Sword (version 4)
+*Neptune Awp*
 ```
 
 ## Changed Log

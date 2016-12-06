@@ -33,7 +33,7 @@ public Plugin myinfo =
 	name = "Neptunia Sword for CSGO",
 	author = "maoling ( xQy )",
 	description = "",
-	version = "1.5",
+	version = "1.5r1",
 	url = "http://steamcommunity.com/id/_xQy_/"
 };
 

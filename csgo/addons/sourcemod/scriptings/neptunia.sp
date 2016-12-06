@@ -23,7 +23,7 @@ enum Models
 
 int g_iModels;
 Models g_eModel[24][Models];
-int g_iClientModel[MAXPLAYERS+1][4];
+int g_iClientModel[MAXPLAYERS+1][2];
 int g_iAdminTarget[MAXPLAYERS+1];
 
 public Plugin myinfo = 
@@ -31,7 +31,7 @@ public Plugin myinfo =
 	name = "Neptunia Model for CSGO",
 	author = "maoling ( xQy )",
 	description = "",
-	version = "1.5",
+	version = "1.5r1",
 	url = "http://steamcommunity.com/id/_xQy_/"
 };
 
@@ -78,7 +78,7 @@ void LoadModelsData()
 		KvGetSectionName(m_hKV, g_eModel[g_iModels][szName], 128);
 		KvGetString(m_hKV, "model", g_eModel[g_iModels][szModel], 128);
 		KvGetString(m_hKV, "arms", g_eModel[g_iModels][szArms], 128);
-		g_eModel[g_iModels][iTeam] = KvGetNum(m_hKV, "team", 0);
+		g_eModel[g_iModels][iTeam] = KvGetNum(m_hKV, "team", 0)-2;
 		
 		if(!FileExists(g_eModel[g_iModels][szModel]))
 			continue;
@@ -170,8 +170,8 @@ public void AddTextrureToDownoadTable()
 
 public void OnClientPostAdminCheck(int client)
 {
-	for(int x; x < 4; ++x)
-		g_iClientModel[client][x] = -1;
+		g_iClientModel[client][0] = -1;
+		g_iClientModel[client][1] = -1;
 }
 
 public Action Event_PlayerSpawn(Handle event, const char[] name, bool dontBroadcast)
@@ -181,7 +181,7 @@ public Action Event_PlayerSpawn(Handle event, const char[] name, bool dontBroadc
 	if(!client || !IsClientInGame(client) || !IsPlayerAlive(client))
 		return Plugin_Stop;
 	
-	PreSetClientModel(client, GetClientTeam(client), false);
+	PreSetClientModel(client, GetClientTeam(client)-2, false);
 
 	return Plugin_Stop;
 }
@@ -193,7 +193,7 @@ public Action Event_PlayerTeam(Handle event, const char[] name, bool dontBroadca
 	if(!client || !IsClientInGame(client) || !IsPlayerAlive(client))
 		return Plugin_Continue;
 
-	PreSetClientModel(client, GetEventInt(event, "team"), true);
+	PreSetClientModel(client, GetEventInt(event, "team")-2, true);
 
 	return Plugin_Continue;
 }
@@ -202,7 +202,7 @@ void PreSetClientModel(int client, int team, bool reset)
 {
 	if(g_iClientModel[client][team] == -1)
 	{
-		PrintToChat(client, "[\x0EPlaneptune\x01]  Type \x04!nep \x01in chat to select models")
+		PrintToChat(client, "[\x0ENeptunia\x01]  Type \x04!nep \x01in chat to select models")
 		return;
 	}
 
@@ -238,7 +238,7 @@ public Action Timer_FixPlayerArms(Handle timer, int userid)
 {
 	int client = GetClientOfUserId(userid);
 	if(client && IsClientInGame(client))
-		PreSetClientModel(client, GetClientTeam(client), false);
+		PreSetClientModel(client, GetClientTeam(client)-2, false);
 }
 
 public Action Command_Menu(int client, int args)
@@ -250,20 +250,25 @@ void BuildMenuToClient(int client)
 {
 	Handle menu = CreateMenu(MenuHandler_MainMenu);
 	
-	char m_szItem[128], m_szCT[128], m_szTE[128];
-	
-	if(g_iClientModel[client][3] < 0)
-		strcopy(m_szCT, 128, "none");
-	else
-		strcopy(m_szCT, 128, g_eModel[g_iClientModel[client][3]][szName]);
-	
-	if(g_iClientModel[client][2] < 0)
-		strcopy(m_szTE, 128, "none");
-	else
-		strcopy(m_szTE, 128, g_eModel[g_iClientModel[client][2]][szName]);
+	char m_szItem[128];
 
-	Format(m_szItem, 128, "[Planeptune] - Select Your Model\n \nCurrent CT: %s\nCurrent TE: %s \n ", m_szCT, m_szTE);
-	SetMenuTitle(menu, m_szItem, client);
+	SetMenuTitle(menu, "[Neptunia] - Select Your Model\n ");
+	
+	if(g_iClientModel[client][1] < 0)
+		strcopy(m_szItem, 128, "none");
+	else
+		Format(m_szItem, 128, "Current CT: %s", g_eModel[g_iClientModel[client][1]][szName]);
+
+	AddMenuItem(menu, "", m_szItem, ITEMDRAW_DISABLED);
+	
+	if(g_iClientModel[client][0] < 0)
+		strcopy(m_szItem, 128, "none");
+	else
+		Format(m_szItem, 128, "Current TE: %s", g_eModel[g_iClientModel[client][0]][szName]);
+	
+	AddMenuItem(menu, "", m_szItem, ITEMDRAW_DISABLED);
+	
+	AddMenuItem(menu, "", "", ITEMDRAW_SPACER);
 	
 	AddMenuItem(menu, "3", "Select CT Model", ITEMDRAW_DEFAULT);
 	AddMenuItem(menu, "2", "Select TE Model", ITEMDRAW_DEFAULT);
@@ -295,7 +300,7 @@ void BuildSelectMenuToClient(int client, int team)
 	Handle menu = CreateMenu(MenuHandler_SelectMenu);
 	
 	char m_szItem[128], m_szId[4];
-	Format(m_szItem, 128, "[Planeptune] - Select Your Model\n ");
+	Format(m_szItem, 128, "[Neptunia] - Select Your Model\n ");
 	SetMenuTitle(menu, m_szItem, client);
 
 	for(int mdl; mdl < g_iModels; ++mdl)
@@ -335,7 +340,7 @@ public int MenuHandler_SelectMenu(Handle menu, MenuAction action, int client, in
 
 			g_iClientModel[client][g_eModel[m_Id][iTeam]] = m_Id;
 			
-			PrintToChat(client, "[\x0EPlaneptune\x01]  You have selected \x0C%s \x01as your model", g_eModel[m_Id][szName]);
+			PrintToChat(client, "[\x0ENeptunia\x01]  You have selected \x0C%s \x01as your model", g_eModel[m_Id][szName]);
 		}
 		case MenuAction_End:
 		{
@@ -358,7 +363,7 @@ public Action Command_Admin(int client, int args)
 	g_iAdminTarget[client] = 0;
 	
 	char m_szItem[128];
-	Format(m_szItem, 128, "[Planeptune] - Select Client\n ");
+	Format(m_szItem, 128, "[Neptunia] - Select Client\n ");
 	SetMenuTitle(menu, m_szItem, client);
 	
 	for(int target = 1; target <= MaxClients; ++target)
@@ -402,7 +407,7 @@ public int MenuHandler_AdminMenu(Handle menu, MenuAction action, int client, int
 
 			if(!target || !IsClientInGame(target))
 			{
-				PrintToChat(client, "[\x0EPlaneptune\x01]  \x04Target is not in Game.");
+				PrintToChat(client, "[\x0ENeptunia\x01]  \x04Target is not in Game.");
 				g_iAdminTarget[client] = 0;
 				return;
 			}
@@ -421,11 +426,11 @@ void BuildAdminMenu(int client)
 	Handle menu = CreateMenu(MenuHandler_AdminSelectMenu);
 	
 	char m_szItem[128], m_szId[4];
-	Format(m_szItem, 128, "[Planeptune] - Select %N Model\n ", g_iAdminTarget[client]);
+	Format(m_szItem, 128, "[Neptunia] - Select %N Model\n ", g_iAdminTarget[client]);
 	SetMenuTitle(menu, m_szItem, client);
 
 	int target = GetClientOfUserId(g_iAdminTarget[client]);
-	int m_iTeam = GetClientTeam(target);
+	int m_iTeam = GetClientTeam(target)-2;
 	for(int mdl; mdl < g_iModels; ++mdl)
 	{
 		if(g_eModel[mdl][iTeam] == m_iTeam)
@@ -465,16 +470,16 @@ public int MenuHandler_AdminSelectMenu(Handle menu, MenuAction action, int clien
 			
 			if(!target || !IsClientInGame(target))
 			{
-				PrintToChat(client, "[\x0EPlaneptune\x01]  \x04Target is not in Game.");
+				PrintToChat(client, "[\x0ENeptunia\x01]  \x04Target is not in Game.");
 				g_iAdminTarget[client] = 0;
 				return;
 			}
 
 			g_iClientModel[target][g_eModel[m_Id][iTeam]] = m_Id;
 			
-			PreSetClientModel(target, GetClientTeam(target), true);
+			PreSetClientModel(target, GetClientTeam(target)-2, true);
 			
-			PrintToChat(client, "[\x0EPlaneptune\x01]  Set %N model successful!", target);
+			PrintToChat(client, "[\x0ENeptunia\x01]  Set %N model successful!", target);
 			
 			g_iAdminTarget[client] = 0;
 		}
